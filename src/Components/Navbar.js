@@ -13,7 +13,11 @@ import Badge from '@material-ui/core/Badge';
 import { colors } from '@material-ui/core';
 import { resetAuthedUser } from '../actions/authedUser';
 import { Link } from "react-router-dom";
-import DashBoard from "./DashBoard";
+import Dashboard from "./DashBoard";
+import AnswerPage from "./AnswerPage";
+import LeaderBoard from "./Leader_Board";
+import NewQuestion from "./New_Question";
+import {Route, Switch, BrowserRouter as  Router} from "react-router-dom";
 
 
 const theme = createTheme({
@@ -71,47 +75,45 @@ function Navbar(props) {
 
 return (
   <Fragment>
-      <div className={`${classes.root} ${classes.outerDiv}`}>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="secondary"
-            textColor="primary"
-            variant="standard"
-            className={classes.tabSpacing}
-          >
-            <Tab label="Home" className={classes.capitals}/>
-            <Tab label="New Poll" className={classes.capitals}/>
-            <Tab label="Leader Board" className={classes.capitals}/>
-          </Tabs>
-
-        <div className={classes.innerDiv}>
-          <ThemeProvider theme={theme} >
-            <Typography className={classes.spacing}>{`Hi ${users.name}`}</Typography>
-            <Badge
-              overlap="circular"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-                }}
-              color="primary"
-              variant="dot"
-              className={classes.spacing}>
-            <Avatar src={users.avatarURL} alt={`Avatar of ${users.name}`}/>
-            </Badge>
-          </ThemeProvider>
-          <Button 
-            variant="contained" 
-            onClick={handleLogout} 
-            size="medium" 
-            endIcon={<ExitToAppIcon/>}
-            className={`${classes.spacing} ${classes.capitals}`}
-          >
-            Sign out
-          </Button>
-        </div>
+    <div className={`${classes.root} ${classes.outerDiv}`}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="primary"
+          variant="standard"
+          className={classes.tabSpacing}
+        >
+          <Tab label="Home" component={Link} to="/" className={classes.capitals}/>
+          <Tab label="New Poll" component={Link} to="/new_question" className={classes.capitals}/>
+          <Tab label="Leader Board" component={Link} to="/leaderboard" className={classes.capitals}/>
+        </Tabs>
+      <div className={classes.innerDiv}>
+        <ThemeProvider theme={theme} >
+          <Typography className={classes.spacing}>{`Hi ${users.name}`}</Typography>
+          <Badge
+            overlap="circular"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+              }}
+            color="primary"
+            variant="dot"
+            className={classes.spacing}>
+          <Avatar src={users.avatarURL} alt={`Avatar of ${users.name}`}/>
+          </Badge>
+        </ThemeProvider>
+        <Button 
+          variant="contained" 
+          onClick={handleLogout} 
+          size="medium" 
+          endIcon={<ExitToAppIcon/>}
+          className={`${classes.spacing} ${classes.capitals}`}
+        >
+          Sign out
+        </Button>
       </div>
-    <DashBoard value={value}/>
+    </div>
   </Fragment>
   );
 }

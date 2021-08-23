@@ -1,10 +1,14 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import './../App.css';
 import {connect} from "react-redux";
 import {handleInitialData} from "../actions/index";
 import Login from './Login';
 import {Route, Switch, BrowserRouter as  Router} from "react-router-dom";
 import Navbar from './Navbar'
+import Dashboard from "./DashBoard";
+import AnswerPage from "./AnswerPage";
+import LeaderBoard from "./Leader_Board";
+import NewQuestion from "./New_Question";
 
 
 
@@ -21,13 +25,19 @@ class App extends Component {
   <Router>
     <Switch>
       {authedUser !== null
-      ?<Route path="/" >
-        <Navbar/>
-      </Route>
-      :<Route path="/">
+      ?<Fragment>
+       <Navbar/>
+       <Route exact path="/" component={Dashboard} />
+       <Route path="/questions/:id" component={AnswerPage} />
+       <Route path="/new_question" component={NewQuestion} />
+       <Route path="/leaderboard" component={LeaderBoard} />
+       </Fragment>
+      :<Route exact path="/">
         <Login/>
-      </Route> 
-    }</Switch>
+      </Route>}
+    </Switch>
+    <Switch>
+    </Switch>
   </Router>
   //SWITCH RENDERS THE FIRST COMPONENT AND ACCORDINGLY.
   //It RENDERED THE NAV AND HOME BECAUSE A ROOT WAS NEEDED.

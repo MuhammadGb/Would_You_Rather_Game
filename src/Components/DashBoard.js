@@ -1,39 +1,30 @@
-import React, {Fragment, useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import {useTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import { Paper } from '@material-ui/core';
-import Homepage from "./Homepage";
-import LeaderBoard from "./Leader_Board";
-import NewPoll from "./New_Question";
+import Divider from '@material-ui/core/Divider';
+import Question from './Question';
+import {Paper, Typography} from '@material-ui/core';
 import {connect} from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: "center",
-  },
-}));
-
 function TabPanel(props) {
-
-  const classes = useStyles();
-
   const { children, value, index, ...other } = props;
 
   return (
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
       {...other}
-      className={classes.root}
     >
       {value === index && (
-        <Box p={1} >
-          <Paper elevation={0}>{children}</Paper>
+        <Box p={3}>
+          <Typography>{children}</Typography>
         </Box>
       )}
     </div>
@@ -45,27 +36,107 @@ TabPanel.propTypes = {
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-function DashBoard(props) {
 
-  const { value, answeredIds, unansweredIds } = props;
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: "lghtgreen",
+    width: 550,
+  },
+  center: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: "center",
+  },
+  background: {
+    backgroundColor: "lightgray !important"
+  },
+  capitals: {
+    textTransform: "none !important",
+  },
+  dividerOne: {
+    width: 3,
+    background: "grey",
+  },
+}));
+
+function Dashboard(props) {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+  const [toggle, setToggle] = React.useState(false)
+
+  const {answeredIds, unansweredIds} = props;
+
+  console.log(`ANSWERED ${answeredIds}`)
+  console.log(`UNANSWER ${unansweredIds}`)
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
+  const handleClicking = () => {
+    toggle === false
+    ?setToggle(true)
+    :setToggle(false)
+  };
 
   return (
-    <Fragment>
-      <TabPanel value={value} index={0}>
-        <Homepage answeredIds={answeredIds} unansweredIds={unansweredIds}/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <NewPoll/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <LeaderBoard/>
-      </TabPanel>
-    </Fragment>
+    <div className={classes.center}>
+      <Paper elevation={12} className={classes.root}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example">
+            <Tab 
+              label="Unanswered" {...a11yProps(0)}
+              className = {`${classes.capitals} ${toggle === true? "": classes.background}`}
+              onClick={handleClicking}/>
+            <Tab label="Answered" {...a11yProps(1)}
+              className = {`${classes.capitals} ${toggle === true? classes.background:""} `}
+              onClick={handleClicking}/>
+          </Tabs>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            {unansweredIds.map(unanswered => 
+              <Box key={unansweredIds}>
+                <Question ids={unanswered} isAnswered={false}/>
+              </Box>
+            )}
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            {answeredIds.map(answered => 
+              <Box key={answeredIds}>
+                <Question ids={answered} isAnswered={true}/>
+              </Box>
+            )}
+          </TabPanel>
+        </SwipeableViews>
+      </Paper>
+    </div>
   );
 }
 
+
 function mapStateToProps({authedUser, questions, users}) {
-  const getAnsweredId = Object.keys(users[authedUser].answers);
+  const getAnsweredId = users[authedUser].answers;  
 
   const answeredIds = Object.keys(questions).filter(question => 
     getAnsweredId.hasOwnProperty(question)).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
@@ -78,4 +149,5 @@ function mapStateToProps({authedUser, questions, users}) {
   }
 }
 
-export default connect(mapStateToProps)(DashBoard);
+
+export default connect(mapStateToProps)(Dashboard);

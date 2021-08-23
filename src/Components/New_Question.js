@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: "column",
     width: "30em",
   },
+  center: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: "center",
+  },
   appBar: {
     padding: "0.5em",
     display: "flex",
@@ -46,7 +51,7 @@ const theme = createTheme({
   },
 });
 
-export default function NewPoll() {
+export default function NewQuestion() {
   
   const classes = useStyles();
   const [isActive, setIsActive] = React.useState(false);
@@ -58,54 +63,56 @@ export default function NewPoll() {
   };
 
   return (
-    <Paper elevation={12}>
-      <ThemeProvider theme={theme}>
-        <form  autoComplete="off" onSubmit={""} className={`${classes.root}`}>
-          <AppBar className={`${classes.appBar}`} position="static">
-            <Typography variant="h5">
-              Play the Would You Rather Game.
-            </Typography>
-          </AppBar>
-          <Box className={`${classes.spacing}`}>
-            <div className={`${classes.spacing} ${classes.subtitle}`}>
-              <Typography variant="h7" gutterBottom	>
-                Enter your question:
+    <div className={classes.center}>
+      <Paper elevation={12}>
+        <ThemeProvider theme={theme}>
+          <form  autoComplete="off" onSubmit={""} className={`${classes.root}`}>
+            <AppBar className={`${classes.appBar}`} position="static">
+              <Typography variant="h5">
+                Play the Would You Rather Game.
               </Typography>
-              <Typography variant="h7" sx={{ marginTop: "0.5em" }} className={`${classes.font}`}>
-                Would you rather:
-              </Typography>
-            </div>
-            <div className={`${classes.spacing}`}>
-              <TextField 
-                value={""}
-                onChange={""} 
-                label="Enter a first option" 
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className={`${classes.spacing}`}>
-              <Divider>
-                <Chip label="OR" variant="h1"/>
-              </Divider>
-            </div>
-            <div className={`${classes.spacing}`}>
-              <TextField 
-                value={""}
-                onChange={""} 
-                label="Enter a second option" 
-                variant="outlined"
-                fullWidth
-              />
-            </div>
-            <div className={`${classes.spacing}`}>
-              <Button size="large" fullWidth className={`${classes.button}`} color="primary" type="submit" variant="contained">
-                Submit
-              </Button>
-            </div>
-          </Box>
-        </form>
-      </ThemeProvider>
-    </Paper>
+            </AppBar>
+            <Box className={`${classes.spacing}`}>
+              <div className={`${classes.spacing} ${classes.subtitle}`}>
+                <Typography variant="h7" gutterBottom	>
+                  Enter your question:
+                </Typography>
+                <Typography variant="h7" sx={{ marginTop: "0.5em" }} className={`${classes.font}`}>
+                  Would you rather:
+                </Typography>
+              </div>
+              <div className={`${classes.spacing}`}>
+                <TextField 
+                  value={""}
+                  onChange={""} 
+                  label="Enter a first option" 
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className={`${classes.spacing}`}>
+                <Divider>
+                  <Chip label="OR" variant="h1"/>
+                </Divider>
+              </div>
+              <div className={`${classes.spacing}`}>
+                <TextField 
+                  value={""}
+                  onChange={""} 
+                  label="Enter a second option" 
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+              <div className={`${classes.spacing}`}>
+                <Button size="large" fullWidth className={`${classes.button}`} color="primary" type="submit" variant="contained">
+                  Submit
+                </Button>
+              </div>
+            </Box>
+          </form>
+        </ThemeProvider>
+      </Paper>
+    </div>
   );
 }

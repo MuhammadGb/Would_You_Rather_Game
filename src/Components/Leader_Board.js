@@ -18,6 +18,11 @@ const useStyles = makeStyles({
       height: 128,
     },
   },
+  center: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: "center",
+  },
   outerPaper: {
     display: 'flex',
     flexDirection: "column",
@@ -71,32 +76,34 @@ export default function LeaderBoard() {
   const classes = useStyles();
 
   return (
-    <Box className={`${classes.root}`}>
-      <Paper className={`${classes.outerPaper}`} outlined elevation={12}>
-        <TryIcon/>
-        <div className={`${classes.content}`}>
-          <div>Left</div>
-          <div className={`${classes.middle}`}>
-            <Divider orientation="vertical" className={`${classes.dividerOne}`}/>
-            <div className={`${classes.innerContent}`}>
-              <div>Top</div>
-              <Divider orientation="horizontal" className={`${classes.dividerTwo}`}/> 
-              <div>Bottom</div>
+    <div className={classes.center}>
+      <Box className={`${classes.root}`}>
+        <Paper className={`${classes.outerPaper}`} outlined elevation={12}>
+          <TryIcon/>
+          <div className={`${classes.content}`}>
+            <div>Left</div>
+            <div className={`${classes.middle}`}>
+              <Divider orientation="vertical" className={`${classes.dividerOne}`}/>
+              <div className={`${classes.innerContent}`}>
+                <div>Top</div>
+                <Divider orientation="horizontal" className={`${classes.dividerTwo}`}/> 
+                <div>Bottom</div>
+              </div>
+              <Divider orientation="vertical" className={`${classes.dividerOne}`}/> 
             </div>
-            <Divider orientation="vertical" className={`${classes.dividerOne}`}/> 
+            <Paper className={`${classes.innerPaper}`} elevation={6}>
+              <ThemeProvider theme={theme}>
+                <AppBar className={`${classes.appBar}`} position="static">
+                  <Typography variant="h6">
+                    Score
+                  </Typography>
+                </AppBar>
+              </ThemeProvider>
+              <div>Score Number</div>
+            </Paper>
           </div>
-          <Paper className={`${classes.innerPaper}`} elevation={6}>
-            <ThemeProvider theme={theme}>
-              <AppBar className={`${classes.appBar}`} position="static">
-                <Typography variant="h6">
-                  Score
-                </Typography>
-              </AppBar>
-            </ThemeProvider>
-            <div>Score Number</div>
-          </Paper>
-        </div>
-      </Paper>
-    </Box>
+        </Paper>
+      </Box>
+    </div>
   );
 }

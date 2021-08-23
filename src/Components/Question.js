@@ -95,8 +95,9 @@ function Question(props) {
 
   const classes = useStyles();
 
-  const {ids, question, author} = props;
-  // console.log(`SHOKO${ids}`);
+  const {ids, question, author, isAnswered, answeredIds} = props;
+  const [answered, SetAnswered] = useState(true);
+
   return(
       <Box className={classes.outerBox}>
         <Box className={classes.innerBoxOne}>
@@ -111,9 +112,11 @@ function Question(props) {
               <Typography>or</Typography>
               <Typography className={classes.text}>{question.optionTwo.text}</Typography>
             </Box>
-            {/* <Link to={`/questions/${question.id}`}></Link> */}
-            <Button className={`${classes.button}`} color="primary" variant="contained">
-              Answer Now
+            <Button className={`${classes.button}`} component={Link} to={`/questions/${question.id}`} color="primary" variant="contained">
+              {isAnswered
+              ?"Check Results"
+              :"Answer Here"
+              }
             </Button>
           </Box>
         </Box>
@@ -122,12 +125,15 @@ function Question(props) {
 }
 
 
-function mapStateToProps({ questions, users }, props) {
+function mapStateToProps({ questions, users, authedUser}, props) {
   const { ids } = props;
+
+  const answeredIds = users[authedUser].answers;
 
 	return {
 		question: questions[ids], 
-		author: users[questions[ids].author], 
+    author: users[questions[ids].author],
+    answeredIds 
 	};
 }
 
