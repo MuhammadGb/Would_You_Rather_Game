@@ -8,6 +8,9 @@ import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 import Box from '@material-ui/core/Box';
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { handleSaveQuestion } from '../actions/questions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,22 +54,44 @@ const theme = createTheme({
   },
 });
 
-export default function NewQuestion() {
+function NewQuestion({dispatch}) {
   
   const classes = useStyles();
-  const [isActive, setIsActive] = React.useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [firstOption, setFirstOption] = useState("");
+  const [secondOption, setSecondOption] = useState("");
+  const [home, setHome] = useState(false);
 
   const handleClicking = () => {
     isActive === false
     ?setIsActive(true)
     :setIsActive(false)
   };
+  const handleFirstChange = (e) => {
+    setFirstOption(e.target.value)
+  };
+  const handleSecondChange = (e) => {
+    setSecondOption(e.target.value)
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(handleSaveQuestion(firstOption, secondOption));
+    debugger
+    setHome(true);
+  };
+
+  // home === true
+  // ?<Redirect to="/"/>
+  // : ""
+  if (home === true) {
+    return <Redirect to="/"/>
+  }
 
   return (
     <div className={classes.center}>
       <Paper elevation={12}>
         <ThemeProvider theme={theme}>
-          <form  autoComplete="off" onSubmit={""} className={`${classes.root}`}>
+          <form  autoComplete="off" onSubmit={handleSubmit} className={`${classes.root}`}>
             <AppBar className={`${classes.appBar}`} position="static">
               <Typography variant="h5">
                 Play the Would You Rather Game.
@@ -83,8 +108,8 @@ export default function NewQuestion() {
               </div>
               <div className={`${classes.spacing}`}>
                 <TextField 
-                  value={""}
-                  onChange={""} 
+                  value={firstOption}
+                  onChange={handleFirstChange} 
                   label="Enter a first option" 
                   variant="outlined"
                   fullWidth
@@ -97,8 +122,8 @@ export default function NewQuestion() {
               </div>
               <div className={`${classes.spacing}`}>
                 <TextField 
-                  value={""}
-                  onChange={""} 
+                  value={secondOption}
+                  onChange={handleSecondChange} 
                   label="Enter a second option" 
                   variant="outlined"
                   fullWidth
@@ -116,3 +141,5 @@ export default function NewQuestion() {
     </div>
   );
 }
+
+export default connect()(NewQuestion);

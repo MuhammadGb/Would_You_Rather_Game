@@ -75,9 +75,6 @@ function Dashboard(props) {
 
   const {answeredIds, unansweredIds} = props;
 
-  console.log(`ANSWERED ${answeredIds}`)
-  console.log(`UNANSWER ${unansweredIds}`)
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -116,14 +113,14 @@ function Dashboard(props) {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             {unansweredIds.map(unanswered => 
-              <Box key={unansweredIds}>
+              <Box key={unanswered}>
                 <Question ids={unanswered} isAnswered={false}/>
               </Box>
             )}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             {answeredIds.map(answered => 
-              <Box key={answeredIds}>
+              <Box key={answered}>
                 <Question ids={answered} isAnswered={true}/>
               </Box>
             )}

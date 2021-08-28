@@ -80,23 +80,20 @@ function AnswerPage(props) {
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState('Choose wisely');
-  const [progress, setProgress] = useState(10);
   const classes = useStyles();
   const { authedUser, userAnswers, optionOne, optionTwo, author, id, firstPerc, secondPerc, dispatch} = props;
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
-    setHelperText(' ');
+    setHelperText('');
     setError(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const answer = value;
-
-    if (value === `${optionOne.text}` || value === `${optionTwo.text}`) {
+    if (value !== "") {
       setError(false);
-			dispatch(handleSaveAnswer(id, answer));
+			dispatch(handleSaveAnswer(id, value));
     }else {
       setHelperText('Please select an option.');
       setError(true);
@@ -141,12 +138,12 @@ function AnswerPage(props) {
                 <RadioGroup
                   aria-label="quiz"
                   name="quiz"
-                  value={optionOne.votes.includes(authedUser) ?optionOne.text :optionTwo.text}
+                  value={optionOne.votes.includes(authedUser) ?"optionOne":"optionTwo"}
                   sx={{pl: "5px" }}
                 >
                   <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
                     <FormControlLabel 
-                      value={optionOne.text} 
+                      value="optionOne" 
                       control={<Radio />} 
                       label={optionOne.text}
                     />
@@ -154,7 +151,7 @@ function AnswerPage(props) {
                   </Box>
                   <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
                     <FormControlLabel 
-                      value={optionTwo.text} 
+                      value="optionTwo"
                       control={<Radio />} 
                       label={optionTwo.text}
                     />
@@ -192,8 +189,8 @@ function AnswerPage(props) {
               value={value}
               onChange={handleRadioChange}
             >
-              <FormControlLabel value={optionOne.text} control={<Radio />} label={optionOne.text} />
-              <FormControlLabel value={optionTwo.text} control={<Radio />} label={optionTwo.text} />
+              <FormControlLabel value="optionOne" control={<Radio />} label={optionOne.text} />
+              <FormControlLabel value="optionTwo" control={<Radio />} label={optionTwo.text} />
             </RadioGroup>
             <FormHelperText>{helperText}</FormHelperText>
             <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">

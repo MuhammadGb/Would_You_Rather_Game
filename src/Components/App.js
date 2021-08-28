@@ -7,8 +7,8 @@ import {Route, Switch, BrowserRouter as  Router} from "react-router-dom";
 import Navbar from './Navbar'
 import Dashboard from "./DashBoard";
 import AnswerPage from "./AnswerPage";
-import LeaderBoard from "./Leader_Board";
-import NewQuestion from "./New_Question";
+import LeaderBoard from "./LeaderBoard";
+import NewQuestion from "./NewQuestion";
 
 
 

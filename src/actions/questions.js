@@ -1,12 +1,12 @@
 import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
-export const GET_QUESTIONS = "GET_QUESTIONS"
+export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS"
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 export const SAVE_ANSWER = 'SAVE_ANSWER';
 
 
-export function getQuestions (questions) {
+export function receiveQuestions (questions) {
     return {
-        type: GET_QUESTIONS, 
+        type: RECEIVE_QUESTIONS, 
         questions
     }
 }

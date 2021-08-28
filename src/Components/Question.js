@@ -5,10 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import {createTheme, ThemeProvider} from '@material-ui/core/styles';
 import {AppBar, Button, Toolbar, Typography} from '@material-ui/core';
 import { grey, } from '@material-ui/core/colors';
-import { colors } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import { red, } from '@material-ui/core/colors';
-import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -95,8 +92,7 @@ function Question(props) {
 
   const classes = useStyles();
 
-  const {ids, question, author, isAnswered, answeredIds} = props;
-  const [answered, SetAnswered] = useState(true);
+  const {ids, question, author, isAnswered} = props;
 
   return(
       <Box className={classes.outerBox}>
