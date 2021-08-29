@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/styles';
-import {createTheme, ThemeProvider} from '@material-ui/core/styles';
-import {AppBar, Button, Toolbar, Typography} from '@material-ui/core';
+import {createTheme} from '@material-ui/core/styles';
+import {Button, Typography} from '@material-ui/core';
 import { grey, } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
@@ -92,7 +92,7 @@ function Question(props) {
 
   const classes = useStyles();
 
-  const {ids, question, author, isAnswered} = props;
+  const {question, author, isAnswered} = props;
 
   return(
       <Box className={classes.outerBox}>

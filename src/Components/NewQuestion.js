@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import {createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
@@ -57,16 +57,10 @@ const theme = createTheme({
 function NewQuestion({dispatch}) {
   
   const classes = useStyles();
-  const [isActive, setIsActive] = useState(false);
   const [firstOption, setFirstOption] = useState("");
   const [secondOption, setSecondOption] = useState("");
   const [home, setHome] = useState(false);
 
-  const handleClicking = () => {
-    isActive === false
-    ?setIsActive(true)
-    :setIsActive(false)
-  };
   const handleFirstChange = (e) => {
     setFirstOption(e.target.value)
   };
@@ -80,21 +74,17 @@ function NewQuestion({dispatch}) {
     setHome(true);
   };
 
-  // home === true
-  // ?<Redirect to="/"/>
-  // : ""
+
   if (home === true) {
     return <Redirect to="/"/>
-  }
-
-  return (
+  }return (
     <div className={classes.center}>
       <Paper elevation={12}>
         <ThemeProvider theme={theme}>
           <form  autoComplete="off" onSubmit={handleSubmit} className={`${classes.root}`}>
             <AppBar className={`${classes.appBar}`} position="static">
               <Typography variant="h5">
-                Play the Would You Rather Game.
+                Set Your Questions
               </Typography>
             </AppBar>
             <Box className={`${classes.spacing}`}>

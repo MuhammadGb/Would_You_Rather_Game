@@ -10,8 +10,6 @@ import AnswerPage from "./AnswerPage";
 import LeaderBoard from "./LeaderBoard";
 import NewQuestion from "./NewQuestion";
 
-
-
 class App extends Component {
 
   componentDidMount(){
@@ -26,11 +24,11 @@ class App extends Component {
     <Switch>
       {authedUser !== null
       ?<Fragment>
-       <Navbar/>
-       <Route exact path="/" component={Dashboard} />
-       <Route path="/questions/:id" component={AnswerPage} />
-       <Route path="/new_question" component={NewQuestion} />
-       <Route path="/leaderboard" component={LeaderBoard} />
+        <Navbar/>
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/questions/:id" component={AnswerPage} />
+        <Route path="/new_question" component={NewQuestion} />
+        <Route path="/leaderboard" component={LeaderBoard} />
        </Fragment>
       :<Route exact path="/">
         <Login/>

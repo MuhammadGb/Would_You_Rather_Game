@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import { createTheme, adaptV4Theme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import './../App.css';
 import {connect} from "react-redux";
@@ -9,10 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Typography, Card} from '@material-ui/core';
 import { setAuthedUser } from '../actions/authedUser';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
 import { colors } from '@material-ui/core';
-import { Link } from "react-router-dom";
 
 
 const theme = createTheme({
@@ -39,7 +36,7 @@ const theme = createTheme({
 
 const useStyles = makeStyles((theme) =>({
   root: {
-    minWidth: 275,
+    width: 500,
     padding: "0em",
     margin: "2em",
   },
@@ -61,22 +58,10 @@ const useStyles = makeStyles((theme) =>({
   },
   formSize:{
     padding: "8em 8px 8px 8px",
-    margin:"8em 8px 8px 8px",
     display: "flex",
     justifyContent: "center",
     flexFlow: "column"
   },
-  avatar:{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexFlow: "row",
-    margin: "2em",
-  },
-  badge:{
-    animation: "$ripple 1.2s infinite ease-in-out",
-    backgroundColor: "lawngreen"
-  }
 }));
 
  function Login(props) {
@@ -98,35 +83,19 @@ const useStyles = makeStyles((theme) =>({
   }
   return (
     <Fragment>
-      <Grid container spacing={3} justifyContent="center">
-        <Grid item xs={8} >
+      <Grid container spacing={0} justifyContent="center">
+        <Grid item xs={5}>
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
-              <Typography variant="h5">
-                Play the Would You Rather Game
-              </Typography>
-              <Typography variant="h5">
-                Sign Up to Start!
-              </Typography>
+            <Typography variant="h5">
+              Play the Would You Rather Game
+            </Typography>
+            <Typography variant="h5">
+              Sign In to Start!
+            </Typography>
           </AppBar>
-          <Fragment>
-            {Object.keys(users).map(id => (
-              <ThemeProvider theme={theme}>
-              <Badge
-                overlap="circular"
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                  }}
-                color="primary"
-                variant="dot">
-              <Avatar src={users[id].avatarURL} key={id} alt={`Avatar of ${users[id].name}`}/>
-              </Badge>
-              </ThemeProvider>
-            ))}
-          </Fragment>
-
           <form className={classes.formSize} autoComplete="off" onSubmit={handleSubmit}>
+          <Typography color="green" textAlign="center" variant="h5">Select a User to Sign in.</Typography>
           <Button size="large" className={classes.buttonSize} color="success" type="submit" variant="contained">
             Sign In
           </Button>
