@@ -46,9 +46,8 @@ const useStyles = makeStyles((theme) =>({
     transform: 'scale(0.8)',
   },
   appBar: {
-    backgroundColor: "lightslategray",
+    backgroundColor: "gray !important",
     alignItems: "center",
-    color: "red",
     margin: 0
   },
   buttonSize:{
@@ -87,15 +86,15 @@ const useStyles = makeStyles((theme) =>({
         <Grid item xs={5}>
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
-            <Typography variant="h5">
+            <Typography color="maroon" variant="h5">
               Play the Would You Rather Game
             </Typography>
-            <Typography variant="h5">
+            <Typography color="maroon" variant="h5">
               Sign In to Start!
             </Typography>
           </AppBar>
           <form className={classes.formSize} autoComplete="off" onSubmit={handleSubmit}>
-          <Typography color="green" textAlign="center" variant="h5">Select a User to Sign in.</Typography>
+          <Typography color="darkblue" textAlign="center" variant="h5">Select a user to Sign in.</Typography>
           <Button size="large" className={classes.buttonSize} color="success" type="submit" variant="contained">
             Sign In
           </Button>
@@ -113,7 +112,7 @@ const useStyles = makeStyles((theme) =>({
             ))}
           </TextField>
           {error? (
-          <div>{error}</div>
+          <div style={{color:"red", marginLeft: "1em"}}>{error}</div>
           ): ""}
           </form>
         </Card>

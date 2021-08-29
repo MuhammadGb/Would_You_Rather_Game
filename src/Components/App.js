@@ -9,6 +9,7 @@ import Dashboard from "./DashBoard";
 import AnswerPage from "./AnswerPage";
 import LeaderBoard from "./LeaderBoard";
 import NewQuestion from "./NewQuestion";
+import NotFound from './NotFound';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
       :<Route exact path="/">
         <Login/>
       </Route>}
+      <Route component={NotFound} />
     </Switch>
     <Switch>
     </Switch>
