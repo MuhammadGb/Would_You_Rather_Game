@@ -192,8 +192,12 @@ function AnswerPage(props) {
               <FormControlLabel value="optionTwo" control={<Radio />} label={optionTwo.text} />
             </RadioGroup>
             <FormHelperText>{helperText}</FormHelperText>
-            <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
-              Check Answer
+            <Button 
+              sx={{ mt: 1, mr: 1, textTransform: "none", background: "navy" }} 
+              type="submit" 
+              variant="contained"
+            >
+              Submit Choice
             </Button>
           </FormControl>
         </form>
