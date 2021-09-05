@@ -36,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: "2em 0em",
+    textTransform: "none !important",
+    fontWeight: "bolder"
   },
   background: {
     backgroundColor: "black",

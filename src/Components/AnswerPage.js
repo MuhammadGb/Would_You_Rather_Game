@@ -15,6 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
 import { handleSaveAnswer } from '../actions/questions';
+import NotFound from './NotFound';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -80,7 +81,18 @@ function AnswerPage(props) {
   const [error, setError] = useState(false);
   const [helperText, setHelperText] = useState('Choose wisely');
   const classes = useStyles();
-  const { authedUser, userAnswers, optionOne, optionTwo, author, id, firstPerc, secondPerc, dispatch} = props;
+  const { authedUser,
+           userAnswers,
+           question, 
+           optionOne, 
+           optionTwo, 
+           author, 
+           id, 
+           firstPerc,
+          secondPerc, 
+          total, 
+          dispatch
+        } = props;
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -99,6 +111,9 @@ function AnswerPage(props) {
     }
   };
 
+  if (question === undefined) {
+    return <NotFound/>;
+  }
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={10}>
@@ -140,21 +155,39 @@ function AnswerPage(props) {
                   value={optionOne.votes.includes(authedUser) ?"optionOne":"optionTwo"}
                   sx={{pl: "5px" }}
                 >
-                  <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around"}}>
+                  <Box 
+                    sx={{ 
+                      display: "flex", 
+                      flexDirection: "row", 
+                      justifyContent: "space-between",
+                      alignItems: "center"
+                      }}>
                     <FormControlLabel 
                       value="optionOne" 
                       control={<Radio />} 
                       label={optionOne.text}
                     />
                     <CircularProgressWithLabel value={firstPerc} />
+                    <Typography fontSize="0.7em" fontWeight="700" mr="0.6em">
+                      {`${optionOne.votes.length} out of ${total} users voted`}
+                    </Typography>
                   </Box>
-                  <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
+                  <Box 
+                    sx={{ 
+                      display: "flex", 
+                      flexDirection: "row", 
+                      justifyContent: "space-between",
+                      alignItems: "center"
+                      }}>
                     <FormControlLabel 
                       value="optionTwo"
                       control={<Radio />} 
                       label={optionTwo.text}
                     />
                     <CircularProgressWithLabel value={secondPerc} />
+                    <Typography fontSize="0.7em" fontWeight="700" mr="0.6em">
+                      {`${optionTwo.votes.length} out of ${total} users voted`}
+                    </Typography>
                   </Box>
                 </RadioGroup>
                 <FormHelperText sx={{ml: "10%", }}>
@@ -211,10 +244,15 @@ function AnswerPage(props) {
 function mapStateToProps({authedUser, questions, users}, props) {
   const {id} = props.match.params
   const question = questions[id]
+  if (question===undefined){
+    return{}
+  }
   const total = question.optionOne.votes.length + question.optionTwo.votes.length;
   return {
     authedUser,
     id,
+    total,
+    question,
     optionOne: question.optionOne,
     optionTwo: question.optionTwo,
     userAnswers: users[authedUser].answers,

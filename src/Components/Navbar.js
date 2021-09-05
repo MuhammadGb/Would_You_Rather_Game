@@ -48,16 +48,16 @@ const useStyles = makeStyles({
     margin: theme.spacing(0.5),
   },
   capitals: {
-    textTransform: "none",
+    textTransform: "none !important",
   }
 });
 
 
 function Navbar(props) {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("one");
 
-  const {users, dispatch} = props;
+  const {users, dispatch,} = props;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -77,9 +77,9 @@ return (
           variant="standard"
           className={classes.tabSpacing}
         >
-          <Tab label="Home" component={Link} to="/" className={classes.capitals}/>
-          <Tab label="New Poll" component={Link} to="/new_question" className={classes.capitals}/>
-          <Tab label="Leader Board" component={Link} to="/leaderboard" className={classes.capitals}/>
+          <Tab value="one" label="Home" component={Link} to="/" className={classes.capitals}/>
+          <Tab value="two" label="New Poll" component={Link} to="/new" className={classes.capitals}/>
+          <Tab value="three" label="Leader Board" component={Link} to="/leaderboard" className={classes.capitals}/>
         </Tabs>
       <div className={classes.innerDiv}>
         <ThemeProvider theme={theme} >

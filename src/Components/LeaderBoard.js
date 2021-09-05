@@ -2,12 +2,11 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import {createTheme} from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import TryIcon from '@material-ui/icons/Try';
 import Avatar from '@material-ui/core/Avatar';
 import {Typography} from '@material-ui/core';
-import { grey, } from '@material-ui/core/colors';
+//import { grey, } from '@material-ui/core/colors';
 import { connect } from 'react-redux';
 
 
@@ -76,17 +75,6 @@ const useStyles = makeStyles({
     width: "100%"
   },
 })
-const theme = createTheme({
-  // palette: {
-  //   primary: grey,
-  // },
-  palette: {
-    primary: {
-      main: grey[300],
-    }
-  },
-});
-
 function LeaderBoard(props) {
 
   const classes = useStyles();

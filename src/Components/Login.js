@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+//import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import './../App.css';
 import {connect} from "react-redux";
@@ -9,16 +9,16 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Typography, Card} from '@material-ui/core';
 import { setAuthedUser } from '../actions/authedUser';
-import { colors } from '@material-ui/core';
+//import { colors } from '@material-ui/core';
 
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.green.A700
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: colors.green.A700
+//     },
+//   },
+// });
 
 // const theme = createTheme(
 //   adaptV4Theme({
@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) =>({
     margin: 0
   },
   buttonSize:{
-    textTransform: "none",
-    fontWeight: "bold", 
-    fontSize: "2em",
+    textTransform: "none !important",
+    fontWeight: "bolder !important", 
+    fontSize: "1.5em",
   },
   formSize:{
     padding: "8em 8px 8px 8px",

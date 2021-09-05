@@ -22,28 +22,19 @@ class App extends Component {
 
   return ( 
   <Router>
-    <Switch>
       {authedUser !== null
       ?<Fragment>
         <Navbar/>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/questions/:id" component={AnswerPage} />
-        <Route path="/new_question" component={NewQuestion} />
-        <Route path="/leaderboard" component={LeaderBoard} />
+        <Switch>
+          <Route path="/"  exact component={Dashboard} />
+          <Route path="/questions/:id" component={AnswerPage} />
+          <Route path="/new"  component={NewQuestion} />
+          <Route path="/leaderboard" component={LeaderBoard} />
+          <Route component={NotFound} />
+        </Switch>
        </Fragment>
-      :<Route exact path="/">
-        <Login/>
-      </Route>}
-      <Route component={NotFound} />
-    </Switch>
-    <Switch>
-    </Switch>
+      :<Route exact path="*" component={Login}/>}
   </Router>
-  //SWITCH RENDERS THE FIRST COMPONENT AND ACCORDINGLY.
-  //It RENDERED THE NAV AND HOME BECAUSE A ROOT WAS NEEDED.
-  //EVEN IF I CHANGED THE RULE LOGIN IS NOT BEING RENDERED BECAUSE A ROOT IS NEEDED.
-  //IT CAN NEVER RENDER THE LOGIN ROUTE FIRST BECAUSE A ROOT ROUTE NEEDS TO APPEAR FIRST.
-  //IT CAN NEVER RENDER ANY ROUTE FIRST OVER A ROOT ROUTE.
   )}
 }
 

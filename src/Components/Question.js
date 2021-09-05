@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from "react-redux";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/styles';
-import {createTheme} from '@material-ui/core/styles';
 import {Button, Typography} from '@material-ui/core';
 import { grey, } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
@@ -77,16 +76,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: grey[200],
-    }
-  },
-	// myColor: {
-	// 	main: colors.grey[500]
-	// },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: grey[200],
+//     }
+//   },
+// 	// myColor: {
+// 	// 	main: colors.grey[500]
+// 	// },
+// });
 
 function Question(props) {
 
