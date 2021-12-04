@@ -46,8 +46,9 @@ const useStyles = makeStyles((theme) =>({
     transform: 'scale(0.8)',
   },
   appBar: {
-    backgroundColor: "gray !important",
+    backgroundColor: "teal !important",
     alignItems: "center",
+    borderRadius: "0.5em",
     margin: 0
   },
   buttonSize:{
