@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) =>({
     transform: 'scale(0.8)',
   },
   appBar: {
-    backgroundColor: "royalblue !important",
+    backgroundColor: "forestgreen !important",
     alignItems: "center",
     borderRadius: "0.5em",
     margin: 0
@@ -87,10 +87,10 @@ const useStyles = makeStyles((theme) =>({
         <Grid item xs={5}>
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
-            <Typography  className={classes.playHeader} color="midnightblue" variant="h5">
+            <Typography fontWeight="600" color="midnightblue" variant="h6">
               Play the Would You Rather Game
             </Typography>
-            <Typography color="midnightblue" variant="h5">
+            <Typography  fontWeight="600" color="midnightblue" variant="h6">
               Sign In to Start!
             </Typography>
           </AppBar>
