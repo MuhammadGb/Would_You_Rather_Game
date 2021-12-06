@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) =>({
     width: 500,
     padding: "0em",
     margin: "2em",
+    "@media only screen and (max-width: 768px)": {
+      width: 350,
+      marginLeft: "0em",
+  }
   },
   bullet: {
     display: 'inline-block',
