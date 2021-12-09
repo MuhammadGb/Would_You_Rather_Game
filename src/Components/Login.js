@@ -51,6 +51,14 @@ const useStyles = makeStyles((theme) =>({
     borderRadius: "0.5em",
     margin: 0
   },
+  typoOne: {
+     fontWeight:"600", 
+     color:"midnightblue",
+  },
+  typoTwo: {
+     fontWeight:"600", 
+     color:"midnightblue",
+  },
   buttonSize:{
     textTransform: "none !important",
     fontWeight: "bolder !important", 
@@ -86,10 +94,10 @@ const useStyles = makeStyles((theme) =>({
       <Grid container spacing={0} marginTop="7%" justifyContent="center">
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
-            <Typography fontWeight="600" color="midnightblue" variant="h6">
+            <Typography  className={classes.typoOne} variant="h6">
               Would You Rather Game
             </Typography>
-            <Typography  fontWeight="600" color="midnightblue" variant="h6">
+            <Typography   className={classes.typoTwo} variant="h6">
               Sign In to Play!
             </Typography>
           </AppBar>
