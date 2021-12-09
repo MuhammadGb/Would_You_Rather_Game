@@ -88,10 +88,10 @@ const useStyles = makeStyles((theme) =>({
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
             <Typography fontWeight="600" color="midnightblue" variant="h6">
-              Play the Would You Rather Game
+              Would You Rather Game
             </Typography>
             <Typography  fontWeight="600" color="midnightblue" variant="h6">
-              Sign In to Start!
+              Sign In to Play!
             </Typography>
           </AppBar>
           <form className={classes.formSize} autoComplete="off" onSubmit={handleSubmit}>
