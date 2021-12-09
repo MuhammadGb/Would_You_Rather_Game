@@ -52,12 +52,18 @@ const useStyles = makeStyles((theme) =>({
     margin: 0
   },
   typoOne: {
-     fontWeight:"600", 
+     fontWeight:"400", 
      color:"midnightblue",
+     "@media only screen and (max-width: 768px)": {
+      fontSize: "1.2em !important",
+    }
   },
   typoTwo: {
-     fontWeight:"600", 
-     color:"midnightblue",
+     fontWeight:"700 !important", 
+     color:"lime",
+     "@media only screen and (max-width: 768px)": {
+      fontSize: "1em !important",
+    }
   },
   buttonSize:{
     textTransform: "none !important",
