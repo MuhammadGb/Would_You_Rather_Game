@@ -65,6 +65,13 @@ const useStyles = makeStyles((theme) =>({
       fontSize: "1em !important",
     }
   },
+  typoThree: {
+    textAlign: "center",
+     color:"darkblue",
+     "@media only screen and (max-width: 768px)": {
+      fontSize: "1em !important",
+    }
+  },
   buttonSize:{
     textTransform: "none !important",
     fontWeight: "bolder !important", 
@@ -103,12 +110,12 @@ const useStyles = makeStyles((theme) =>({
             <Typography  className={classes.typoOne} variant="h6">
               Would You Rather Game
             </Typography>
-            <Typography   className={classes.typoTwo} variant="h6">
+            <Typography className={classes.typoTwo} variant="h6">
               Sign In to Play!
             </Typography>
           </AppBar>
           <form className={classes.formSize} autoComplete="off" onSubmit={handleSubmit}>
-          <Typography color="darkblue" textAlign="center" variant="h5">Select a user to Sign in.</Typography>
+          <Typography className={classes.typoThree} variant="h5">Select a user to Sign in.</Typography>
           <Button size="large" className={classes.buttonSize} color="success" type="submit" variant="contained">
             Sign In
           </Button>
@@ -117,7 +124,7 @@ const useStyles = makeStyles((theme) =>({
             value={userID}
             onChange={handleInput} 
             label="Choose a User" 
-            helperText="Sign in to one of these users" 
+            helperText="Sign in to one of the users" 
             variant="filled"
             fullWidth
             fullWidth
