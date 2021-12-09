@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) =>({
   return (
     <Fragment>
       <Grid container spacing={0} marginTop="7%" justifyContent="center">
-        <Grid item xs={5}>
         <Card className={classes.root}>
           <AppBar className={classes.appBar} position="static">
             <Typography fontWeight="600" color="midnightblue" variant="h6">
@@ -112,18 +111,12 @@ const useStyles = makeStyles((theme) =>({
             {Object.keys(users).map(id => (
               <MenuItem key={id} value={id}>{users[id].name}</MenuItem>
             ))}
-          </TextField>                                                                
-          <TextField>
-            {Object.keys(users).map(id => (
-              <MenuItem key={id} value={id}>{users[id].name}</MenuItem>
-            ))}
-          </TextField>
+          </TextField>  
           {error? (
           <div style={{color:"red", marginLeft: "1em"}}>{error}</div>
           ): ""}
           </form>
         </Card>
-        </Grid>
       </Grid>
       </Fragment>
   )}
